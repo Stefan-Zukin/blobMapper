@@ -22,7 +22,7 @@ class TestModelHelper(unittest.TestCase):
         for r in ['Y', 'W', 'F', 'R']:
             self.assertTrue(m.equal(r, '>'))
 
-    def testmatches(self):
+    def testMatches(self):
         p = m.pattern("TISKRIK")
         self.assertEqual([location(4,0)], p.matches(seq))
         p = m.pattern("TIS(KRTHW)RIK")
@@ -41,6 +41,32 @@ class TestModelHelper(unittest.TestCase):
         self.assertEqual([location(57,0),location(99,0), location(111,0), location(112,0), location(113,0)], p.matches(seq))
         p = m.pattern("T=<KRIK")
         self.assertEqual([location(4,0)], p.matches(seq))
+
+    def testMismatches(self):
+        p = m.pattern("TISKRIK")
+        p.maxMismatches = 1
+        self.assertEqual([location(4,0)], p.matches(seq))
+        p = m.pattern("TQSKRIK")
+        p.maxMismatches = 1
+        self.assertEqual([location(4,1)], p.matches(seq))
+        p = m.pattern("TQQKRIK")
+        p.maxMismatches = 2
+        self.assertEqual([location(4,2)], p.matches(seq))
+        p = m.pattern("TQQKRIK")
+        p.maxMismatches = 1
+        self.assertNotEqual([location(4,2)], p.matches(seq))
+        p = m.pattern("WISKRIK")
+        p.maxMismatches = 1
+        self.assertEqual([location(4,1)], p.matches(seq))
+        p = m.pattern("WWWWRIK")
+        p.maxMismatches = 4
+        self.assertEqual([location(4,4)], p.matches(seq))
+        p = m.pattern("WWWWWWPP")
+        p.maxMismatches = 5
+        self.assertEqual([], p.matches(seq))
+        p = m.pattern("WWWWWWPP")
+        p.maxMismatches = 6
+        self.assertEqual([location(26,6), location(43,6), location(74,6)], p.matches(seq))
 
     
     def testFasta(self):

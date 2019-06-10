@@ -1,6 +1,7 @@
 import glob
 import argparse
 import os
+import time
 
 maxMismatches = 0
 
@@ -37,11 +38,12 @@ def equal(residue, input):
                 return True
     return False
 
+
 class location():
     """A location is an object to track location of a match in a protein sequence
     and also allow me to keep track of mismatch levels"""
 
-    def __init__(self,value, mismatches):
+    def __init__(self, value, mismatches):
         self.value = value
         self.mismatches = mismatches
 
@@ -60,6 +62,7 @@ class pattern():
     def __init__(self, pattern):
         self.pattern = pattern
         self.l = self.listify()
+        self.maxMismatches = maxMismatches
 
     def listify(self):
         """Converts the pattern into a list of protein residues including X"""
@@ -114,11 +117,14 @@ class pattern():
                 for x in range(len(self.l)):
                     if(not equal(input[index + x], self.l[x])):
                         mismatches += 1
-                if(mismatches <= maxMismatches):
-                    matchPoints.append(location(index+1,mismatches))
+                    if(mismatches > self.maxMismatches):
+                        break
+                if(mismatches <= self.maxMismatches):
+                    matchPoints.append(location(index+1, mismatches))
                 startPoint = False
             index += 1
         return matchPoints
+
 
 class fasta():
 
@@ -165,9 +171,11 @@ class fasta():
         for i in self.chains:
             matches = p.matches(self.chains[i][::-1])
             for x in range(len(matches)):
-                matches[x] = location(len(self.chains[i]) - (matches[x].value) + 1, matches[x].mismatches)
+                matches[x] = location(
+                    len(self.chains[i]) - (matches[x].value) + 1, matches[x].mismatches)
             candidates[i] = matches
         return candidates
+
 
 def printResults(f):
     """Prints the results from parsing the fasta file for the pattern"""
@@ -201,9 +209,11 @@ def printResults(f):
 
 
 if __name__ == '__main__':
+    start = time.time()
     args = parseArgs()
     maxMismatches = args.m[0]
     relPath = args.path[0]
     absPath = os.path.abspath(relPath)
     f = fasta(absPath)
     printResults(f)
+    print('It took', time.time()-start, 'seconds.')
