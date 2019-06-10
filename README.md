@@ -23,7 +23,7 @@ To use blobMapper, you need to first create a FASTA file containing the sequence
 >VFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG
 
 Then, to execute the script, you do\
-`python3 blobmapper.py -m [number of allowable mismatches] -p [pattern] [path to fasta file]`
+`python3 blobMapper.py -m [number of allowable mismatches] -p [pattern] [path to fasta file]`
 
 The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax described below.
 
@@ -61,27 +61,27 @@ The best way to understand the syntax is through examples. For the following I w
 
 If I want to search for the sequence WFF, I can do that by running:
 
-`python3 blobmapper.py -p 'WFF' Fasta.seq`
+`python3 blobMapper.py -p 'WFF' Fasta.seq`
 
 If I'm sure that the first residue is a tryptophan, but not sure that the following two are phenylalanine, I could broaden the search so that instead of searching for tryptophan followed by two phenylalanines, I am searching for tryptophan followed by two large residues. I can do that by running:
 
-`python3 blobmapper.py -p 'W>>' Fasta.seq`
+`python3 blobMapper.py -p 'W>>' Fasta.seq`
 
 If I see a tryptophan, then two small residues, then an ambiguous residue, and then a large residue, I could search for that by running:
 
-`python3 blobmapper.py -p 'W<<X>' Fasta.seq`
+`python3 blobMapper.py -p 'W<<X>' Fasta.seq`
 
 If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running:
 
-`python3 blobmapper.py -p '>>8>>' Fasta.seq`
+`python3 blobMapper.py -p '>>8>>' Fasta.seq`
 
 If I see a tryptophan, then a space of 5 residues, then what is either F or Y, then 7 more residues, then another tryptophan, I can search for that by running:
 
-`python3 blobmapper.py -p 'W5(FY)7W' Fasta.seq`
+`python3 blobMapper.py -p 'W5(FY)7W' Fasta.seq`
 
 If I see what I think is two tryptophans followed by 6 residues, and then a tyrosine but I am not completely sure, I would want to search with some mismatch allowance. I could do this search allowing for one mismatch by running:
 
-`python3 blobmapper.py -m 1 -p 'WW6Y'`
+`python3 blobMapper.py -m 1 -p 'WW6Y'`
 
 # Other Notes
 Since it is sometimes hard to determine which direction a chain is going based on electron density alone, the script will search your sequences both in the forward and reverse directions.
