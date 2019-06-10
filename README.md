@@ -43,7 +43,7 @@ Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p a
 
 # Examples
 The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq.
-\
+
 If I want to search for the sequence WFF, I can do that by running:
 
 `python3 blobmapper.py -p 'WFF' Fasta.seq`
