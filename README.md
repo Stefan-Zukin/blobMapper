@@ -23,4 +23,4 @@ To use blobMapper, you need to first create a FASTA file containing the sequence
 >VFLENVIRDAVTYTEHAKRKTVTAMDVVYALKRQGRTLYGFGG
 
 Then, to execute the script, you do 
->python3 blobmapper.py -m [number of allowable mismatches] -p [pattern] [path to fasta file]
+`python3 blobmapper.py -m [number of allowable mismatches] -p [pattern] [path to fasta file]`
