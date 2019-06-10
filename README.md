@@ -31,16 +31,16 @@ The parameter p is where you input your pattern to search for. This pattern has 
 
 As an example. If I search the above sequences for a motif of phenylanine, followed by proline, followed by two unknown residues, followed by arginine, with the command `python3 blobMapper.py -p 'FPXXR' Fasta.seq'` I will see these results:
 
->Forward:\
+>Forward:
 >
 >  Perfect Match:\
->    H2A: [26]\
+>  \ \ H2A: [26]
 >
 >
->Reverse:\
+>Reverse:
 >
 >  Perfect Match:\
->    H3: [68]\
+>    H3: [68]
 
 ## Pattern Syntax
 Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p argument must be enclosed in quotations.
