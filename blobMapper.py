@@ -99,13 +99,8 @@ class pattern():
                 l.append("X")
         return l
 
-    def next(self):
-        return self.l.pop(0)
-
-    def hasNext(self):
-        return len(self.l) > 0
-
     def matches(self, input):
+        """Finds matches to the pattern in the input FASTA file"""
         startPoint = False
         matchPoints = []
         index = 0
@@ -177,35 +172,37 @@ class fasta():
         return candidates
 
 
-def printResults(f):
-    """Prints the results from parsing the fasta file for the pattern"""
+    def printResults(self):
+        """Prints the results from parsing the fasta file for the pattern"""
 
-    def printCandidates(cand):
-        """Print the formatted output from an input list of locations"""
-        for m in range(maxMismatches + 1):
-            if(m == 1):
-                print("  " + str(m) + " Mismatch:")
-            else:
-                print("  " + str(m) + " Mismatches:")
-            for i in cand:
-                toPrint = []
-                for c in cand[i]:
-                    if(c.mismatches == m):
-                        toPrint.append(c)
-                if(len(toPrint) > 0):
-                    print("    " + i, end=": ")
-                    print(toPrint)
-            print('')
+        def printCandidates(cand):
+            """Print the formatted output from an input list of locations"""
+            for m in range(maxMismatches + 1):
+                if(m == 0):
+                    print("  Perfect Match:")
+                elif(m == 1):
+                    print("  " + str(m) + " Mismatch:")
+                else:
+                    print("  " + str(m) + " Mismatches:")
+                for i in cand:
+                    toPrint = []
+                    for c in cand[i]:
+                        if(c.mismatches == m):
+                            toPrint.append(c)
+                    if(len(toPrint) > 0):
+                        print("    " + i, end=": ")
+                        print(toPrint)
+                print('')
 
-    candidates = f.hasPattern(args.p[0])
-    revCandidates = f.hasReversePattern(args.p[0])
-    print("Forward:")
-    print("")
-    printCandidates(candidates)
-    print("")
-    print("Reverse:")
-    print("")
-    printCandidates(revCandidates)
+        candidates = self.hasPattern(args.p[0])
+        revCandidates = self.hasReversePattern(args.p[0])
+        print("Forward:")
+        print("")
+        printCandidates(candidates)
+        print("")
+        print("Reverse:")
+        print("")
+        printCandidates(revCandidates)
 
 
 if __name__ == '__main__':
@@ -215,5 +212,5 @@ if __name__ == '__main__':
     relPath = args.path[0]
     absPath = os.path.abspath(relPath)
     f = fasta(absPath)
-    printResults(f)
+    f.printResults()
     print('It took', time.time()-start, 'seconds.')
