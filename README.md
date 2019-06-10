@@ -25,11 +25,11 @@ To use blobMapper, you need to first create a FASTA file containing the sequence
 Then, to execute the script, you do\
 `python3 blobmapper.py -m [number of allowable mismatches] -p [pattern] [path to fasta file]`
 
+The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax described below.
+
 The parameter m is an optional value where you can input the number of allowable mismatches. If you leave it out, m defaults to 0, and the script will only show results that are perfect matches. As an example, if you set m to 1, then the script will show results that are perfect matches and results where one residue is not matched up correctly. This can be useful due to the ambiguity when trying to identify residues based on an electron map.
 
-The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax.
-
-As an example. If I search the above sequences for a motif of phenylanine, followed by proline, followed by two unknown residues, followed by arginine, with the command `python3 blobMapper.py -p 'FPXXR' Fasta.seq'` I will see these results:
+As an example. If I search the above sequences for a motif of phenylanine, followed by proline, followed by two unknown residues, followed by arginine, with the command `python3 blobMapper.py -p 'FPXXR' Fasta.seq` I will see these results:
 
 >Forward:
 >
