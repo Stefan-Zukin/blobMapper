@@ -42,7 +42,7 @@ Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p a
 * Use numbers to indicate a stretch of `X` residues.
 
 # Examples
-The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq.
+The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq and that my terminal is positioned in a directory containing both blobmapper.py and Fasta.seq.
 
 If I want to search for the sequence WFF, I can do that by running:
 
