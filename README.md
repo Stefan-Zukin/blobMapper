@@ -30,10 +30,20 @@ The parameter m is an optional value where you can input the number of allowable
 The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax.
 
 ## Pattern Syntax
+Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p argument must be enclosed in quotations.
+
 * Use the standard single letter codes to indicate a specific amino acid residue
 * Use `>` to indicate a large residue. By default: W, F, Y, R, or H are considered large.
-* use `=` to indicate a medium sized residue. By default: M, L, I, Q, N, H and K are considered medium.
-* use `<` to indicate a small residue. By default: G, A, S, T, P, K, E, D and C are considered small.
-* use paranthesis to indicate one of multiple residues
+* Use `=` to indicate a medium sized residue. By default: M, L, I, Q, N, H and K are considered medium.
+* Use `<` to indicate a small residue. By default: G, A, S, T, P, K, E, D and C are considered small.
+* Use paranthesis to indicate one of multiple residues
   * For example, if you believe a residue is either F or Y, you can encode this specific option by writing `(FY)` to represent that residue.
+* Use `X` to indicate any residue.
+* Use numbers to indicate a stretch of `X` residues.
+
+# Examples
+The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq.
+\
+If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running\
+`python3 blobmapper.py -p '>>8>>' Fasta.seq
 
