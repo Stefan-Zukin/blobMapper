@@ -29,6 +29,19 @@ The parameter m is an optional value where you can input the number of allowable
 
 The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax.
 
+As an example. If I search the above sequences for a motif of phenylanine, followed by proline, followed by two unknown residues, followed by arginine, with the command `python3 blobMapper.py -p 'FPXXR' Fasta.seq'` I will see these results:
+
+>Forward:\
+>
+>  Perfect Match:\
+>    H2A: [26]\
+>
+>
+>Reverse:\
+>
+>  Perfect Match:\
+>    H3: [68]\
+
 ## Pattern Syntax
 Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p argument must be enclosed in quotations.
 
