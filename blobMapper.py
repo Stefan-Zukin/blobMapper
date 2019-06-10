@@ -1,7 +1,6 @@
 import glob
 import argparse
 import os
-import time
 
 maxMismatches = 0
 
@@ -206,11 +205,9 @@ class fasta():
 
 
 if __name__ == '__main__':
-    start = time.time()
     args = parseArgs()
     maxMismatches = args.m[0]
     relPath = args.path[0]
     absPath = os.path.abspath(relPath)
     f = fasta(absPath)
     f.printResults()
-    print('It took', time.time()-start, 'seconds.')
