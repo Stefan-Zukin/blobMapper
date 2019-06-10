@@ -44,6 +44,18 @@ Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p a
 # Examples
 The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq.
 \
+If I want to search for the sequence WFF, I can do that by running:
+
+`python3 blobmapper.py -p 'WFF' Fasta.seq`
+
+If I'm sure that the first residue is a tryptophan, but not sure that the following two are phenylalanine, I could broaden the search so that instead of searching for tryptophan followed by two phenylalanines, I am searching for tryptophan followed by two large residues. I can do that by running:
+
+`python3 blobmapper.py -p 'W>>' Fasta.seq`
+
+If I see a tryptophan, then two small residues, then an ambiguous residue, and then a large residue, I could search for that by running:
+
+`python3 blobmapper.py -p 'W<<X>' Fasta.seq`
+
 If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running:
 
 `python3 blobmapper.py -p '>>8>>' Fasta.seq`
@@ -56,3 +68,7 @@ If I see what I think is two tryptophans followed by 6 residues, and then a tyro
 
 `python3 blobmapper.py -m 1 -p 'WW6Y'`
 
+# Other Notes
+Since it is sometimes hard to determine which direction a chain is going based on electron density alone, the script will search your sequences both in the forward and reverse directions.
+
+It is important to ensure that your peptide backbone is correct, without missing or inserted residues. As an example, if you search for `WF12W` and your sequence has `WF11W` it will not show as a result. This may be changed in the future, but as of now, it is important to maintain accuracy with the spacing between residues. If you are unsure of the spacing, you can manually try different, reasonable values of the spacing between two anchoring residues with an appropriate mismatch value.
