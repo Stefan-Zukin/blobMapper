@@ -44,9 +44,15 @@ Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p a
 # Examples
 The best way to understand the syntax is through examples. For the following I will assume I have my protein sequences in a file titled Fasta.seq.
 \
-If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running\
+If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running:
+
 `python3 blobmapper.py -p '>>8>>' Fasta.seq`
 
-If I see a tryptophan, then a space of 5 residues, then what is either F or Y, then 7 more residues, then another tryptophan, I can search for that by running\
+If I see a tryptophan, then a space of 5 residues, then what is either F or Y, then 7 more residues, then another tryptophan, I can search for that by running:
+
 `python3 blobmapper.py -p 'W5(FY)7W' Fasta.seq`
+
+If I see what I think is two tryptophans followed by 6 residues, and then a tyrosine but I am not completely sure, I would want to search with some mismatch allowance. I could do this search allowing for one mismatch by running:
+
+`python3 blobmapper.py -m 1 -p 'WW6Y'`
 
