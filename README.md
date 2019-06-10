@@ -34,13 +34,15 @@ As an example. If I search the above sequences for a motif of phenylanine, follo
 >Forward:
 >
 >  Perfect Match:\
->  \ \ H2A: [26]
+>  H2A: [26]
 >
 >
 >Reverse:
 >
 >  Perfect Match:\
 >    H3: [68]
+
+These results show that in H2A, residue number 26 matches this pattern going forward and in H3 residue number 68 matches this pattern going in reverse. We can see that is true because H2A residue 26 going forward is `FPVGR` which matches the pattern and H3 residue 68 going in reverse is `FPLKR` which also matches the pattern.
 
 ## Pattern Syntax
 Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p argument must be enclosed in quotations.
