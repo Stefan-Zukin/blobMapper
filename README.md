@@ -72,7 +72,7 @@ If I see a tryptophan, then two small residues, then an ambiguous residue, and t
 
 `python3 blobMapper.py -p 'W<<X>' Fasta.seq`
 
-If I'm looking at my map and I see two large residues, a space of 8 residues and then two more large residues, I could search for that by running:
+If I'm looking at my map and I see two large residues, a space of 8 ambiguous residues and then two more large residues, I could search for that by running:
 
 `python3 blobMapper.py -p '>>8>>' Fasta.seq`
 
