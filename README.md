@@ -29,4 +29,7 @@ The parameter m is an optional value where you can input the number of allowable
 
 The parameter p is where you input your pattern to search for. This pattern has to be input using specific syntax.
 
-##Pattern Syntax
+#Pattern Syntax
+* Use the standard single letter codes to indicate a specific amino acid residue
+* Use `>` to indicate a large residue, by default: W, F, Y, R, or H are considered large.
+
