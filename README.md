@@ -46,7 +46,7 @@ If I search the above sequences for a motif of phenylanine, followed by proline,
 These results show that in H2A, residue number 26 matches this pattern going forward and in H3 residue number 68 matches this pattern going in reverse. We can see that is true because H2A residue 26 going forward is `FPVGR` which matches the pattern and H3 residue 68 going in reverse is `FPLKR` which also matches the pattern.
 
 ## Pattern Syntax
-Since the `>` operator has meaning in the unix terminal, the -p argument must be enclosed in quotations.
+Since the `>` operator and parantheses have meaning in the unix terminal, the -p argument must be enclosed in quotations.
 
 * Use the standard single letter codes to indicate a specific amino acid residue
 * Use `>` to indicate a large residue. By default: W, F, Y, R, or H are considered large.
