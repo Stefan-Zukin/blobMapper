@@ -1,8 +1,8 @@
 # BlobMapper
-BlobMapper is a tool which aids in building models from CryoEM or X-ray electron density maps. Often is is difficult to identify which protein chains are responsible for a given area of electron density; one of the best ways to identify these chains is by looking for patterns of noticeable large or small residues and trying to see which protein sequence could match that pattern. BlobMapper is a tool to help structural biologists turn these 'blobs' into residues.
+BlobMapper is a tool which aids in building models from CryoEM or X-ray electron density maps. Often it is difficult to identify which protein chains are responsible for a given area of map density; one of the best ways to identify these chains is by looking for patterns of noticeable large or small residues and trying to see which protein sequence could match that pattern. BlobMapper is a tool to help structural biologists turn these 'blobs' into protein chains.
 
 # Basic Use
-To use blobMapper, you need to first create a FASTA file containing the sequences to all the proteins that could be a part of the structure. As an example, if I were working with a nucleosome particle, my proteins would be H2A, H2B, H3, and H4, all combined into one FASTA file like this:
+To use blobMapper, you need to first create a FASTA file containing the sequences of all the proteins that could be a part of the structure. As an example, if I were working with a nucleosome particle, my proteins would be H2A, H2B, H3, and H4, all combined into one FASTA file like this:
 
 >\>H2A\
 >MSGRGKQGGKARAKAKTRSSRAGLQFPVGRVRRLLRKGNYAERVGAGAPVYLAAVLEYLT\
@@ -46,13 +46,13 @@ If I search the above sequences for a motif of phenylanine, followed by proline,
 These results show that in H2A, residue number 26 matches this pattern going forward and in H3 residue number 68 matches this pattern going in reverse. We can see that is true because H2A residue 26 going forward is `FPVGR` which matches the pattern and H3 residue 68 going in reverse is `FPLKR` which also matches the pattern.
 
 ## Pattern Syntax
-Since the `>`, `=` and `<` operators have meaning in the unix terminal, the -p argument must be enclosed in quotations.
+Since the `>` operator and parentheses have meaning in the unix terminal, the -p argument must be enclosed in quotations.
 
 * Use the standard single letter codes to indicate a specific amino acid residue
 * Use `>` to indicate a large residue. By default: W, F, Y, R, or H are considered large.
 * Use `=` to indicate a medium sized residue. By default: M, L, I, Q, N, H and K are considered medium.
 * Use `<` to indicate a small residue. By default: G, A, S, T, P, K, E, D and C are considered small.
-* Use single letter codes enclosed in parantheses to indicate one of multiple residues
+* Use single letter codes enclosed in parentheses to indicate one of multiple residues
   * For example, if you believe a residue is either F or Y, you can encode this specific option by writing `(FY)` to represent a residue that is either F or Y.
 * Use `X` to indicate any residue.
 * Use numbers to indicate a stretch of `X` residues.
@@ -88,3 +88,5 @@ If I see what I think is two tryptophans followed by 6 residues, and then a tyro
 Since it is sometimes hard to determine which direction a chain is going based on electron density alone, the script will search your sequences both in the forward and reverse directions.
 
 It is important to ensure that your peptide backbone is correct, without missing or inserted residues. As an example, if you search for `WF12W` and your sequence has `WF11W` it will not show as a result. This may be changed in the future to add misspacing tolerance, but as of now, it is important to maintain accuracy with the spacing between residues. If you are unsure of the spacing, you can manually try different, reasonable values of the spacing between two anchoring residues with an appropriate mismatch value.
+
+I've found the best way to identify chains is by synthesizing guesses over long distances. Depending on the quality of your map, it can be hard to identify residues beyond classifying them as big, medium or small. However, this can be enough to identify chains. You can create a very specific search if you look for something like a big residue, a space of 15 residues, then a big residue, then a space of 23 residues followed by another big residue. The odds of a motif like this appearing randomly are quite low. Even if the map quality is good enough to identify characteristic residues such as tryptophan or arginine, this approach of searching for anchor residues over known distances can be very useful to identifying protein chains.
