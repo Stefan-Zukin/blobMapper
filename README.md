@@ -52,7 +52,7 @@ Since the `>` operator and parentheses have meaning in the unix terminal, the -p
 * Use `>` to indicate a large residue. By default: W, F, Y, R, or H are considered large.
 * Use `=` to indicate a medium sized residue. By default: M, L, I, Q, N, H and K are considered medium.
 * Use `<` to indicate a small residue. By default: G, A, S, T, P, K, E, D and C are considered small.
-* Use single letter codes enclosed in parantheses to indicate one of multiple residues
+* Use single letter codes enclosed in parentheses to indicate one of multiple residues
   * For example, if you believe a residue is either F or Y, you can encode this specific option by writing `(FY)` to represent a residue that is either F or Y.
 * Use `X` to indicate any residue.
 * Use numbers to indicate a stretch of `X` residues.
