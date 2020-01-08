@@ -1,7 +1,7 @@
 # BlobMapper
 BlobMapper is a tool which aids in building models from CryoEM or X-ray electron density maps. Often it is difficult to identify which protein chains are responsible for a given area of map density; one of the best ways to identify these chains is by looking for patterns of noticeable large or small residues and trying to see which protein sequence could match that pattern. BlobMapper is a tool to help structural biologists turn these 'blobs' into protein chains.
 
-This tool was used recently to determine the build the structure of the chromatin remodeler RSC:
+This tool was used recently to build the structure of the chromatin remodeler RSC:
 https://elifesciences.org/articles/54449
 
 # Basic Use
